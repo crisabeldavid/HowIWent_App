@@ -108,8 +108,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
-    }
 
+    }
+    public void toForgotPW (View v) {
+        Intent i = new Intent(this,ForgotPasswordActivity.class);
+        startActivity(i);
+    }
 
 
 

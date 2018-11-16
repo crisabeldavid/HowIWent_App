@@ -19,7 +19,8 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".ThankYouActivity" />
         <activity android:name=".ProfileActivity" />
-
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".ChangePasswordActivity" />
     </application>
-
+    
 </manifest>
