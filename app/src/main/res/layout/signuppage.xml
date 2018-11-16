@@ -10,9 +10,6 @@
     tools:context=".SignupActivity">
 
 
-
-
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="322dp"
@@ -125,7 +122,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="toThankYou"
         android:text="Sign Up"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

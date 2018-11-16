@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "299830635622",
+    "firebase_url": "https://howiwentapp.firebaseio.com",
+    "project_id": "howiwentapp",
+    "storage_bucket": "howiwentapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299830635622:android:d074529b94f8069a",
+        "android_client_info": {
+          "package_name": "com.davidgella.howiwentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299830635622-3qtu1c1o8hjc18gb7s5epstpkcl1jdet.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.davidgella.howiwentapp",
+            "certificate_hash": "3f8a8a49332635e140e885d2ae078f21bd8b341e"
+          }
+        },
+        {
+          "client_id": "299830635622-e90srfgopkst6ljd81vgehaps7p8nmrd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXt2hggTPKsxYh2Iv0TLQh0UIkb4JzJlY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299830635622-e90srfgopkst6ljd81vgehaps7p8nmrd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

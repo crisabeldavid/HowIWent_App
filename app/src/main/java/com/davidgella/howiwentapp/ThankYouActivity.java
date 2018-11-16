@@ -13,13 +13,9 @@ public class ThankYouActivity extends AppCompatActivity {
         setContentView(R.layout.thankyoupage);
     }
 
-    public void toLogIn (View v) {
-        Intent i = new Intent(this,LoginActivity.class);
-        startActivity(i);
-    }
     public void Back (View v) {
+        finish();
         Intent i = new Intent(this,LoginActivity.class);
         startActivity(i);
     }
-
 }
