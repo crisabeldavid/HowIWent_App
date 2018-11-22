@@ -21,6 +21,10 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".Contribute1Activity" />
+        <activity android:name=".Contribute2Activity" />
+        <activity android:name=".SeeLatestActivity" />
+        <activity android:name=".UserActivity" />
     </application>
-    
+
 </manifest>

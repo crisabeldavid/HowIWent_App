@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth mAuth;
     TextView tvUsername;
     ProgressBar progressBar;
@@ -39,7 +39,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mAuth = FirebaseAuth.getInstance();
         tvUsername = (TextView) findViewById(R.id.tvUsername);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
 
 
         loadUserInformation();
@@ -76,16 +75,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         });
 
 
-
-
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.ivSignOut:
                 FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent (this, LoginActivity.class);
+                Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
                 finish();
 
@@ -97,20 +94,21 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
-        if (mAuth.getCurrentUser() == null){
+        if (mAuth.getCurrentUser() == null) {
             //handle already login
             finish();
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
     }
+
+    public void toContribute1(View v) {
+        Intent i = new Intent(this, Contribute1Activity.class);
+        startActivity(i);
+    }
+
+    public void toSeeLatest(View v) {
+        Intent i = new Intent(this, SeeLatestActivity.class);
+        startActivity(i);
+    }
 }
-//    public void toContribute1 (View v) {
-//        Intent i = new Intent(this,Contribute1Activity.class);
-//        startActivity(i);
-//    }
-//
-//    public void toSeeLatest (View v) {
-//        Intent i = new Intent(this,SeeLatestActivity.class);
-//        startActivity(i);
-//    }
