@@ -26,6 +26,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     EditText etUsername, etPassword, etEmail;
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
+
     //private Context context;
 
     @Override
@@ -39,10 +40,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         etUsername = (EditText) findViewById(R.id.etUsername);
         mAuth = FirebaseAuth.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         findViewById(R.id.btnSignUp).setOnClickListener(this);
 
     }
+
+
 
     @Override
     public void onClick(View v) {

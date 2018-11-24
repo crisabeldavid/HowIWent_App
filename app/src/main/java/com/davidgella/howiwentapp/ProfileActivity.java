@@ -35,17 +35,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilepage);
-
         mAuth = FirebaseAuth.getInstance();
         tvUsername = (TextView) findViewById(R.id.tvUsername);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-
         loadUserInformation();
-
         findViewById(R.id.ivSignOut).setOnClickListener(this);
-
-
     }
 
     private void loadUserInformation() {
@@ -85,7 +79,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
                 finish();
-
                 break;
         }
     }
