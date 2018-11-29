@@ -9,22 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".ThankYouActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".Contribute1Activity" />
+        <activity android:name=".Contribute2Activity" />
+        <activity android:name=".SeeLatestActivity" />
+        <activity android:name=".UserActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".ThankYouActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".Contribute1Activity" />
-        <activity android:name=".Contribute2Activity" />
-        <activity android:name=".SeeLatestActivity" />
-        <activity android:name=".UserActivity" />
+        <activity android:name=".ViewCard1Activity" />
+        <activity android:name=".ViewCard2Activity" />
     </application>
 
 </manifest>

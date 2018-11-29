@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class UserActivity extends AppCompatActivity {
+public class ViewCard2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.userpage);
+        setContentView(R.layout.viewcard2page);
     }
 
     public void toLogIn (View v) {
@@ -22,10 +22,4 @@ public class UserActivity extends AppCompatActivity {
         Intent i = new Intent(this,ProfileActivity.class);
         startActivity(i);
     }
-
-    public void toViewCard1 (View v) {
-        Intent i = new Intent(this,ViewCard1Activity.class);
-        startActivity(i);
-    }
-
 }
