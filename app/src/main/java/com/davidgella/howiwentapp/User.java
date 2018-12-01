@@ -3,9 +3,7 @@ package com.davidgella.howiwentapp;
 
 public class User {
     public String id,username, email;
-
     public User(){
-
     }
 
 

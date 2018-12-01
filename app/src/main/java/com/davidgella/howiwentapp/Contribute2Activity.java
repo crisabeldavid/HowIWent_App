@@ -84,8 +84,6 @@ public class Contribute2Activity extends AppCompatActivity implements  View.OnCl
 
                     for (DataSnapshot Users : dataSnapshot.getChildren()) {
                         tvUsername.setText(Users.child("username").getValue().toString());
-
-//                        System.out.println("HEY: " + Users.child("username").getValue());
                     }
                 }
             }
@@ -133,22 +131,23 @@ public class Contribute2Activity extends AppCompatActivity implements  View.OnCl
         String mot = sMOT.getSelectedItem().toString();
         String key = root.push().getKey();
         String wp_id = "";
-        try {
-            Intent intent = getIntent();
 
+            Intent intent = getIntent();
              wp_id = intent.getStringExtra("wp_id");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("getStringExtra_EX", e + "");
-        }
 
 
 
-        PointToPoint subplace = new PointToPoint(from,to,mot,fare,comment, wp_id);
+        PointToPoint subplace = new PointToPoint(from,to,mot,fare,comment, wp_id, key);
         root.child(key).setValue(subplace);
         progressBar.setVisibility(View.GONE);
-        Toast.makeText(this,"record added to database",Toast.LENGTH_LONG).show();
+        etFrom.setText("");
+        etTo.setText("");
+        etFare.setText("");
+        etComment.setText("");
+        sMOT.setSelection(0);
+
+        Toast.makeText(this,"One step added!" + wp_id,Toast.LENGTH_LONG).show();
 
     }
 

@@ -1,15 +1,21 @@
 package com.davidgella.howiwentapp;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +31,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewCard1Activity extends AppCompatActivity implements View.OnClickListener {
+public class update_ptop extends AppCompatActivity implements View.OnClickListener {
     TextView tvUsername, tvFrom2, tvTo2;
     FirebaseAuth mAuth;
     ListView listViewWholePlace;
@@ -35,7 +41,7 @@ public class ViewCard1Activity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.viewcard1page);
+        setContentView(R.layout.update_ptop);
 
         tvUsername = (TextView) findViewById(R.id.tvUsername);
         tvTo2 = (TextView) findViewById(R.id.tvTo2);
@@ -54,6 +60,16 @@ public class ViewCard1Activity extends AppCompatActivity implements View.OnClick
                 startActivity(i);
             }
         });
+
+        listViewWholePlace.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                PointToPoint p2p = PointToPointList.get(position);
+                showUpdateDialog(p2p.getKey(),p2p.getTo(),p2p.getFrom(),p2p.getMot(),p2p.getFare(),p2p.getComment(),p2p.getWp_id());
+                return false;
+            }
+        });
+
 
 
         loadUserInformation();
@@ -81,7 +97,7 @@ public class ViewCard1Activity extends AppCompatActivity implements View.OnClick
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot Users : dataSnapshot.getChildren()) {
-                     tvUsername.setText(Users.child("username").getValue().toString());
+                        tvUsername.setText(Users.child("username").getValue().toString());
                     }
                 }
             }
@@ -103,10 +119,10 @@ public class ViewCard1Activity extends AppCompatActivity implements View.OnClick
                     PointToPointList.add(p2p);
                 }
 
-               ArrayAdapter adapter = new PointToPointList(ViewCard1Activity.this, PointToPointList);
-               listViewWholePlace.setAdapter(adapter);
+                ArrayAdapter adapter = new PointToPointList(update_ptop.this, PointToPointList);
+                listViewWholePlace.setAdapter(adapter);
             }
-//
+            //
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -127,6 +143,98 @@ public class ViewCard1Activity extends AppCompatActivity implements View.OnClick
 
             }
         });
+    }
+
+    private void showUpdateDialog(final String id, String to, String from, String mot, String fare, String comment, final String wp_id){
+        AlertDialog.Builder dBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.update_dialog2,null);
+
+        dBuilder.setView(dialogView);
+
+        final EditText etTo = (EditText) dialogView.findViewById(R.id.etTo);
+        final EditText etFrom = (EditText) dialogView.findViewById(R.id.etFrom);
+        final EditText etFare = (EditText) dialogView.findViewById(R.id.etFare);
+        final EditText etComment = (EditText) dialogView.findViewById(R.id.etComment);
+        final Spinner sMOT = (Spinner) dialogView.findViewById(R.id.sMOT);
+
+        etTo.setText(to);
+        etFrom.setText(from);
+        etFare.setText(fare);
+        etComment.setText(comment);
+
+
+
+
+
+        final Button btnUpdate = (Button) dialogView.findViewById(R.id.btnUpdate);
+        final Button btnDelete = (Button) dialogView.findViewById(R.id.btnDelete);
+        dBuilder.setTitle("Updating Start and End Sub Destination");
+
+        final AlertDialog aDialog = dBuilder.create();
+        aDialog.show();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String from = etFrom.getText().toString().trim();
+                String to = etTo.getText().toString().trim();
+                String comment = etComment.getText().toString();
+                String fare = etFare.getText().toString();
+                String mot = sMOT.getSelectedItem().toString();
+
+                if(to.isEmpty()){
+                    etTo.setError("To required.");
+                }
+                if(from.isEmpty()){
+                    etFrom.setError("From required.");
+                }
+
+                if(fare.isEmpty()){
+                    etFare.setError("Fare required.");
+                }
+
+                updateWholePlace(from, to, mot, fare, comment, wp_id, id);
+                aDialog.dismiss();
+
+
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                deleteP2P(id);
+                aDialog.dismiss();
+
+
+
+            }
+        });
+
+
+    }
+
+        private boolean deleteP2P(String id){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PointToPoint").child(id);
+        databaseReference.removeValue();
+
+        Toast.makeText(this,"Record deleted!", Toast.LENGTH_SHORT).show();
+        return true;
+
+    }
+
+
+
+
+        private  boolean updateWholePlace(String from, String to, String mot, String fare, String comment, String wp_id, String key){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PointToPoint").child(key);
+        String id2 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        PointToPoint  p2p = new PointToPoint(from, to, mot, fare, comment, wp_id, key);
+        databaseReference.setValue(p2p);
+        Toast.makeText(this,"Record Updated Successfully!", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
 

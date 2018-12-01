@@ -23,10 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeeLatestActivity extends AppCompatActivity implements View.OnClickListener {
+public class allpage extends AppCompatActivity implements View.OnClickListener {
     public static final String WHOLEPLACE_ID = "user_id";
     FirebaseAuth mAuth;
-    TextView tvUsername;
+    TextView tvUsername, tvPlace;
     ProgressBar progressBar;
 
     DatabaseReference databaseUsers;
@@ -41,6 +41,7 @@ public class SeeLatestActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.seelatestpage);
         mAuth = FirebaseAuth.getInstance();
         tvUsername = (TextView) findViewById(R.id.tvUsername);
+        tvPlace = (TextView) findViewById(R.id.tvPlace);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         databaseWholeList = FirebaseDatabase.getInstance().getReference("wholePlace");
@@ -67,12 +68,13 @@ public class SeeLatestActivity extends AppCompatActivity implements View.OnClick
 
     private void loadUserInformation() {
         FirebaseUser user = mAuth.getCurrentUser();
+        tvPlace.setText("All");
 
         // Get a reference to our users
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child("Users").orderByChild("id").equalTo(user.getUid());
-        Query query2 =  FirebaseDatabase.getInstance().getReference("wholePlace").limitToLast(10);
+        Query query2 =  FirebaseDatabase.getInstance().getReference("wholePlace");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -102,7 +104,7 @@ public class SeeLatestActivity extends AppCompatActivity implements View.OnClick
                     wholePlaceList2.add(wholePlace);
                 }
 
-                ArrayAdapter adapter = new wholePlaceList2(SeeLatestActivity.this, wholePlaceList2);
+                ArrayAdapter adapter = new wholePlaceList2(allpage.this, wholePlaceList2);
                 listViewWholePlace.setAdapter(adapter);
             }
 

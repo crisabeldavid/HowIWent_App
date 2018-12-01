@@ -25,7 +25,7 @@
         app:srcCompat="@drawable/hiwlogopng" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivSignOut"
         android:layout_width="28dp"
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
@@ -34,7 +34,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="toLogIn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.97"
@@ -44,7 +43,7 @@
         app:srcCompat="@drawable/logout" />
 
     <TextView
-        android:id="@+id/ivSignOut"
+        android:id="@+id/tvSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

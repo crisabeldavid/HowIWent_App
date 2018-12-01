@@ -89,10 +89,11 @@ public class Contribute1Activity extends AppCompatActivity implements View.OnCli
 
                     break;
                 case R.id.ivSignOut:
+                    finish();
                     FirebaseAuth.getInstance().signOut();
                     Intent i = new Intent(this, LoginActivity.class);
                     startActivity(i);
-                    finish();
+
                     break;
             }
         }
@@ -104,7 +105,7 @@ public class Contribute1Activity extends AppCompatActivity implements View.OnCli
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String key = root.push().getKey();
         z = key;
-        wholePlace place = new wholePlace(from,to,id);
+        wholePlace place = new wholePlace(from,to,id,key);
         root.child(key).setValue(place);
         progressBar.setVisibility(View.GONE);
         Toast.makeText(this,"record added to database",Toast.LENGTH_LONG).show();

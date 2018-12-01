@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".ViewCard1Activity" />
         <activity android:name=".ViewCard2Activity" />
+        <activity android:name=".allpage"></activity>
+        <activity android:name=".update_ptop"></activity>
     </application>
 
 </manifest>
